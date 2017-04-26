@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/main.css" rel="stylesheet" />
+    	</head>
+	<body class="nm3k">
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+			<h1 class="mui-title">基本信息</h1>
+			<ul class="bar-right-icons mui-pull-right">
+				<li>
+					<a id='refresh' href="javascript:void(0)" class="iconfont icon-refresh mui-icon mR0-must"></a>
+				</li>
+				<li>
+					<a id='more' href="#popover" class="iconfont icon-dot mui-icon"></a>				
+				</li>
+			</ul>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item mui-active" id="baseInfo-link">
+		    	<span class="mui-icon iconfont icon-baseinfo"></span>
+		        <span class="mui-tab-label">基本信息</span>
+		    </a>
+		    <a class="mui-tab-item" id="cability-link">
+		        <span class="mui-icon iconfont icon-cability"></span>
+		        <span class="mui-tab-label">能力信息</span>
+		    </a>
+		    <a class="mui-tab-item" id="opts-link">
+		        <span class="mui-icon iconfont icon-opt"></span>
+		        <span class="mui-tab-label">光模块信息</span>
+		    </a>
+		    <a class="mui-tab-item" id="uniport-link">
+		        <span class="mui-icon iconfont icon-uni"></span>
+		        <span class="mui-tab-label">UNI端口列表</span>
+		    </a>
+		    <a class="mui-tab-item" id="cpelist-link">
+		        <span class="mui-icon iconfont icon-cpe"></span>
+		        <span class="mui-tab-label">CPE列表</span>
+		    </a>
+		</nav>
+		<div class="mui-content">
+		    <div class="mui-control-content mui-active">
+		    	<div class="nm3k-panel" id="baseInfo-panel">
+		    		
+		    	</div>
+		    </div>
+		    <div class="mui-control-content">
+		    	<div class="nm3k-panel" id="cability-panel">
+		    		
+		    	</div>
+		    </div>
+		    <div class="mui-control-content">
+		    	<div class="nm3k-panel" id="opt-panel">
+		    		
+		    	</div>
+		    </div>
+		    <div class="mui-control-content" id="uniPortList-panel">
+		    	
+		    </div>
+		    <div class="mui-control-content">
+		    	暂无数据
+		    </div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/tools.js"></script>
+		<script type="text/javascript">
+			var onuId = getUrlParam('onuId');
+			mui.init();
+			getData(loadBaseInfo, '../../js/data-onu.js');
+			mui("body").on('tap','#back',function(){
+			  	mui.back();
+			});
+			function getData(callback, url){
+				mui.ajax(url, {
+					data:{},
+					dataType:'text',//服务器返回json格式数据
+					type:'GET',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；	              
+					success:function(data){
+						var json = JSON.parse(data);
+						callback(json);
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			
+			mui(".mui-bar-tab").on('tap','a',function(){
+			  var tabId = this.id;
+			  var arr = document.querySelectorAll('.mui-control-content');
+			  for(var i=0; i<arr.length; i++){
+			  	arr[i].className = "mui-control-content";	
+			  }
+			  var indexNum = 1;
+			  switch(tabId){
+			  	case 'baseInfo-link':
+			  		indexNum = 1;
+			  		getData(loadBaseInfo, '../../js/data-onu.js');
+			  		break;
+			  	case 'cability-link':
+			  		indexNum = 2;
+			  		getData(loadCabilityInfo, '../../js/data-onu.js');
+			  		break;
+			  	case 'opts-link':
+			  		indexNum = 3;
+			  		getData(loadOptInfo, '../../js/data-onu.js');
+			  		break;
+			  	case 'uniport-link':
+			  		indexNum = 4;
+			  		getData(loadUniPortInfo, '../../js/data-onu.js');
+			  		break;
+			  	case 'cpelist-link':
+			  		indexNum = 5;
+			  		break;
+			  }
+			  document.querySelector('.mui-control-content:nth-child('+ indexNum +')').className = 'mui-control-content mui-active';
+			});
+			
+			function loadBaseInfo(data){				
+				mui.each(data, function(i, v){
+					if(onuId == v.onuId){
+						var str = TEMPLATE.onuBaseInfo.join("");
+						var html = fStringFormat(str, v);
+						document.getElementById("baseInfo-panel").innerHTML = html;
+					}
+				});
+			}
+			function loadCabilityInfo(data){
+				mui.each(data, function(i, v){
+					if(onuId == v.onuId){
+						var str = TEMPLATE.onuCabilityInfo.join("");
+						var html = fStringFormat(str, v);
+						document.getElementById("cability-panel").innerHTML = html;
+					}
+				});
+			}
+			function loadOptInfo(data){
+				mui.each(data, function(i, v){
+					if(onuId == v.onuId){
+						var str = TEMPLATE.optInfo.join("");
+						var html = fStringFormat(str, v);
+						document.getElementById("opt-panel").innerHTML = html;
+					}
+				});
+			}
+			function loadUniPortInfo(data){
+				mui.each(data, function(i, v){
+					if(onuId == v.onuId){
+						var str = TEMPLATE.uniPortList.join("");
+						var html = '';
+						for(var j=0,len=v.uniPort.length; j<len; j++){
+							html +=	fStringFormat(str, v.uniPort[j]);
+						}
+						document.getElementById("uniPortList-panel").innerHTML = html;
+					}
+				});
+			}
+			
+		</script>
+	</body>
+
+
+</html>

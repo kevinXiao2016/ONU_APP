@@ -1,0 +1,40 @@
+.nm3k-bottom-sheets{
+    @include transformY(0%);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 48px;
+    overflow: hidden;
+    background: rgba(0,0,0, .85);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 9;
+    
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    a.primary{
+        color: $btn-primary;
+    }
+    dd{
+        margin: 0;
+        flex: 1;
+        text-align: center;
+        a{
+            flex: 1;
+            padding:10px 0px;
+            display: block;
+            color: #fff;
+            i{ margin-right: 0.34em;}  
+        }
+    }
+    dt{ 
+        width: 1px;
+        height: 18px; 
+        background: rgba(255,255,255,0.6);
+    }
+}

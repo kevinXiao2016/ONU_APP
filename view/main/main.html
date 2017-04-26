@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+
+	<body class="nm3k">
+		<header class="mui-bar mui-bar-nav">
+			<a id='scan' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-scan"></a>
+			<div class="nm3k-search">
+				<input type="search" id="searchInput" class="nm3k-search-input" placeholder="搜索">
+				<i class="iconfont icon-zoom"></i>
+			</div>
+			<ul class="bar-right-icons mui-pull-right nm3k-hide-right" id="rightIcons">
+				<li>
+					<a id='setting' href="javascript:void(0)" class="mui-pull-right  iconfont icon-wheel mui-icon"></a>
+				</li>
+			</ul>
+		</header>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				subpages: [{
+					url: 'accesslist.html', //子页面HTML地址，支持本地地址和网络地址
+					id: 'historyList', //子页面标志
+					styles: {
+						top: '45px', //子页面顶部位置
+						bottom: 0, //子页面底部位置
+					},
+					extras: {} //额外扩展参数
+				}]
+			});
+		</script>
+		<script type="text/javascript">
+			var searchInput = document.getElementById("searchInput");
+			searchInput.addEventListener("focus", function() {
+				mui.openWindow({
+					id: 'search',
+					url: '../search/search.html',
+					show: {
+						autoShow: false, //页面loaded事件发生后不自动显示，默认为true
+					}
+				});
+			});
+
+			mui('body').on('tap', '#scan', function() {
+				mui.openWindow({
+					id: 'barcode',
+					url: '../search/barcode.html'
+				});
+			});
+
+			document.querySelector('#setting').addEventListener('tap', function() {
+				mui.openWindow({
+					id: 'setting',
+					url: '../setting/setting.html'
+				});
+			});
+
+			window.addEventListener('refresh', function() {
+				plus.webview.currentWebview().reload();
+			});
+		</script>
+	</body>
+
+</html>

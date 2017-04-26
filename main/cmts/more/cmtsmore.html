@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/main.css" />
+    	</head>
+
+	<body class="nm3k">
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon  iconfont icon-arrLeft"></a>
+			<h1 class="mui-title">更多</h1>
+			
+		</header>
+		<div class="mui-content">
+		    <ul id='list' class="mui-table-view mT0-must">
+			    <li id='subupchannel' class="mui-table-view-cell">
+			    	<a class="mui-navigate-right">上行信道</a>
+			    </li>
+			    <li id='subdownchannel' class="mui-table-view-cell">
+			    	<a class="mui-navigate-right">下行信道</a>
+			    </li>
+			    <li id='subsignalquality' class="mui-table-view-cell">
+			    	<a class="mui-navigate-right">信号质量</a>
+			    </li>
+			    <li id='subcmtsflatness' class="mui-table-view-cell">
+			    	<a class="mui-navigate-right">接收电平测量</a>
+			    </li>
+			</ul>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-baseinfo"></span>
+		        <span class="mui-tab-label">基本信息</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-cmlist"></span>
+		        <span class="mui-tab-label">CM列表</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-reverse"></span>
+		        <span class="mui-tab-label">反向衰减</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-spectrum"></span>
+		        <span class="mui-tab-label">频谱信息</span>
+		    </a>
+		    <a id='more' class="mui-tab-item  mui-active">
+		        <span class="mui-icon iconfont icon-more"></span>
+		        <span class="mui-tab-label">更多</span>
+		    </a>
+		</nav>
+	</body>
+
+<script type="text/javascript">
+	mui("body").on('tap','#back',function(){
+	  	mui.back();
+	}) 
+	mui("#list").on('tap','#subupchannel',function(){
+	  mui.openWindow({
+	    id:'subupchannel',
+	    url:'../../../main/cmts/more/subupchannel.html'
+	  });
+	}) 
+</script>
+</html>

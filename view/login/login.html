@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title></title>
+        <link rel="stylesheet" href="../../css/mui.min.css" />
+        <link rel="stylesheet" href="../../css/main.css" />
+    </head>
+
+    <body class="nm3k">
+        <header class="mui-bar mui-bar-nav">
+            <h1 class="mui-title">登录终端助手</h1>
+            <a id='setting' href="javascript:void(0)" class="mui-pull-right mui-icon iconfont icon-wheel"></a>
+        </header>
+        <div class="mui-content">
+            <form class="mui-input-group">
+                <div class="mui-input-row">
+                    <label>用户名</label>
+                    <input id="username" type="text" placeholder="请输入用户名">
+                </div>
+                <div class="mui-input-row">
+                    <label>密码</label>
+                    <input id="password" type="password" placeholder="请输入密码">
+                </div>
+            </form>
+            <form class="mui-input-group mT8">
+                <div class="mui-input-row">
+                    <label>自动登录</label>
+                    <div id="autoLogin" class="mui-switch mui-switch-mini">
+                        <div class="mui-switch-handle"></div>
+                    </div>
+                </div>
+            </form>
+            <div class="padding15 pB0">
+                <button id='login' type="button" class="mui-btn mui-btn-primary mui-btn-block">登录</button>
+                <button id='offlineLogin' type="button" class="mui-btn mui-btn-block">离线模式运行</button>
+            </div>
+            <p class="copyright">Copyright © 2017-2020<br>鼎点视讯科技有限公司 版权所有</p>
+        </div>
+
+        <script type="text/javascript" src="../../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../../libs/mix-storage/mixStorage.js"></script>
+        <script src="login.js"></script>
+        <script type="text/javascript">
+            mui.init();
+            mui.plusReady(function() {
+                //监听登陆
+                document.getElementById('login').addEventListener('tap', function() {
+                    var username = document.getElementById("username").value;
+                    var pwd = document.getElementById("password").value;
+                    login(username,pwd);
+                });
+                //监听自动登录
+                document.getElementById('autoLogin').addEventListener('toggle', function(event) {
+                    setTimeout(function() {
+                        var isActive = event.detail.isActive;
+                        myStorage.setItem('ONU.token.autoLogin', isActive);
+                    }, 50);
+                }, false);
+                
+                //自动登录
+                autoLogin();
+            });
+
+            mui("body").on('tap', '#offlineLogin', function() {
+                //标记未登录
+                myStorage.setItem('isLogin',false);
+                mui.openWindow({
+                    id: 'main',
+                    url: '../main/main.html'
+                });
+            });
+            mui("body").on('tap', '#setting', function() {
+                mui.openWindow({
+                    id: 'setting',
+                    url: '../setting/setting.html'
+                });
+            });
+
+            function autoLogin() {
+                var autoLoginFlag = myStorage.getItem('ONU.token.autoLogin');
+                if(autoLoginFlag == true || autoLoginFlag == 'true') {
+                    var username = myStorage.getItem('ONU.token.username');
+                    var pwd = myStorage.getItem('ONU.token.password');
+                    if (username && pwd) {
+                    	login(username,pwd);
+                    }else{
+                        document.getElementById("autoLogin").classList.add("mui-active");
+                    }
+                }
+            }
+        </script>
+    </body>
+
+</html>

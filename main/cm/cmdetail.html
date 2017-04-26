@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+    	</head>
+
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon mui-icon-back"></a>
+			<h1 class="mui-title">查询</h1>
+			<a id='refresh' href="javascript:void(0)" class="mui-pull-right mui-icon-bars mui-icon"></a>
+			<a id='backFun' href="javascript:void(0)" class="mui-pull-right mui-icon-bars mui-icon"></a>
+		</header>
+	</body>
+
+<script type="text/javascript">
+	mui("body").on('tap','#back',function(){
+	  	mui.back();
+	}) 
+</script>
+</html>

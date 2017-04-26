@@ -1,0 +1,74 @@
+@for $i from 1 through 20 {
+    @if $i % 2 != 0{
+        .padding#{$i * 5}{ padding: $i * 5 + px;}
+        .margin#{$i *5}{ margin: $i * 5 + px;}
+    
+        .pT#{$i * 5}{ padding-top: $i * 5 + px;}
+        .pR#{$i * 5}{ padding-right: $i * 5 + px;}
+        .pB#{$i * 5}{ padding-bottom: $i * 5 + px;}
+        .pL#{$i * 5}{ padding-left: $i * 5 + px;}
+        
+        .mT#{$i * 5}{ margin-top: $i * 5 + px;}
+        .mR#{$i * 5}{ margin-right: $i * 5 + px;}
+        .mB#{$i * 5}{ margin-bottom: $i * 5 + px;}
+        .mL#{$i * 5}{ margin-left: $i * 5 + px;}
+    }
+    
+    .padding#{$i}{ padding: $i + px;}
+    .margin#{$i}{ margin: $i + px;}
+    
+    .pT#{$i}{ padding-top: $i + px;}
+    .pR#{$i}{ padding-right: $i + px;}
+    .pB#{$i}{ padding-bottom: $i + px;}
+    .pL#{$i}{ padding-left: $i + px;}
+    
+    .mT#{$i}{ margin-top: $i + px;}
+    .mR#{$i}{ margin-right: $i + px;}
+    .mB#{$i}{ margin-bottom: $i + px;}
+    .mL#{$i}{ margin-left: $i + px;}
+}
+
+@for $i from 0 through 10 {
+    .pT#{$i*10}{
+        padding-top: $i*10 + px;
+    }
+    .pR#{$i*10}{
+        padding-right: $i*10 + px;
+    }
+    .pB#{$i*10}{
+        padding-bottom: $i*10 + px;
+    }
+    .pL#{$i*10}{
+        padding-left: $i*10 + px;
+    }
+    
+    .mT#{$i*10}{
+        margin-top: $i*10 + px;
+    }
+    .mR#{$i*10}{
+        margin-right: $i*10 + px;
+    }
+    .mB#{$i*10}{
+        margin-bottom: $i*10 + px;
+    }
+    .mL#{$i*10}{
+        margin-left: $i*10 + px;
+    }
+}
+    
+@for $i from 1 through 100 {
+    .w#{$i*10}{
+        width: $i*10 + px;
+    }
+}   
+
+
+
+
+
+
+
+
+
+
+

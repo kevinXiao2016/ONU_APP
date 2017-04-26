@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/main.css" />
+    	</head>
+
+	<body class="nm3k">
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon  iconfont icon-arrLeft"></a>
+			<h1 class="mui-title">基本信息(148)</h1>
+			<ul class="bar-right-icons mui-pull-right">
+				<li>
+					<a id='refresh' href="javascript:void(0)" class="iconfont icon-refresh mui-icon mR0-must"></a>
+				</li>
+				<li>
+					<a id='more' href="#popover" class="iconfont icon-dot mui-icon"></a>
+				</li>
+			</ul>
+		</header>
+		<div class="mui-content">
+		    <ul id='result' class="mui-table-view mT0-must">
+		    	<li class="mui-table-view-cell">
+			        <a href="javascript:;">
+			            <div class="mui-media-body nm3k-list">
+			                CCMTS_3/3/1
+			                <p class='mui-ellipsis'><span class="online">在线</span><span class="mac">00:24:68:70:E7:3D</span>CC8800C-A</p>
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a href="javascript:;">
+			            <div class="mui-media-body nm3k-list">
+			                CCMTS_3/3/2
+			                <p class='mui-ellipsis'><span class="online">在线</span><span class="mac">00:24:68:70:E7:3E</span>CC8800C-A</p>
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			        <a href="javascript:;">
+			            <div class="mui-media-body nm3k-list">
+			                CCMTS_3/3/3
+			                <p class='mui-ellipsis'><span class="offline">离线</span><span class="mac">00:24:68:70:E7:3F</span>CC8800C-A</p>
+			            </div>
+			        </a>
+			    </li>
+			</ul>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item mui-active">
+		        <span class="mui-icon iconfont icon-baseinfo"></span>
+		        <span class="mui-tab-label">基本信息</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-cmlist"></span>
+		        <span class="mui-tab-label">CM列表</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-reverse"></span>
+		        <span class="mui-tab-label">反向衰减</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-spectrum"></span>
+		        <span class="mui-tab-label">频谱信息</span>
+		    </a>
+		    <a id='more' class="mui-tab-item">
+		        <span class="mui-icon iconfont icon-more"></span>
+		        <span class="mui-tab-label">更多</span>
+		    </a>
+		</nav>
+		<div id="popover" class="mui-popover">
+		  <ul class="mui-table-view">
+		    <li class="mui-table-view-cell"><a id='reTopo' href="#">重新拓扑</a></li>
+		    <li class="mui-table-view-cell"><a id='addInterest' href="#">添加关注</a></li>
+		    <li class="mui-table-view-cell"><a id='backToInterested' href="#">返回关注列表</a></li>
+		    <li class="mui-table-view-cell"><a id='setting' href="#">设置</a></li>
+		  </ul>
+		</div>
+	</body>
+
+<script type="text/javascript">
+	mui("body").on('tap','#back',function(){
+	  	mui.back();
+	}) 
+	mui("body").on('tap','#backToInterested',function(){
+		mui.openWindow({
+		  	id:'interested',
+			url:'../../main/interested.html'
+		});
+	}) 
+	mui("body").on('tap','#setting',function(){
+		mui.openWindow({
+		  	id:'setting',
+			url:'../../main/setting.html'
+		});
+	}) 
+	mui("body").on('tap','#more',function(){
+	  mui.openWindow({
+	    id:'cmdetail',
+	    url:'../../main/cmts/more/cmtsmore.html'
+	  });
+	}) 
+	mui("#result").on('tap','li',function(){
+	  mui.openWindow({
+	    id:'cmdetail',
+	    url:'../../main/cm/cmdetail.html'
+	  });
+	}) 
+</script>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/main.css" />
+    	</head>
+
+	<body class="nm3k">
+		<header class="mui-bar mui-bar-nav">
+			<!--<a href="javascript:;" class="mui-pull-left nm3k-toggle-txt" id="editBtn">编辑</a>-->
+			<a href="javascript:;" class="mui-pull-left nm3k-toggle-txt" id="barcodeBtn">扫码</a>
+			<a href="javascript:;" style="left:45px" class=" nm3k-toggle-txt" id="map">地图</a>
+			<div class="absLayout-segment nm3k-hide-top" id="headerBtnGroup">
+				<div class="mui-segmented-control" style="width: 55%;">
+		  		    <a class="mui-control-item mui-active" style="" href="#pullrefresh">OLT</a>
+		  		    <a class="mui-control-item" href="#item2">CMTS</a>
+		  		    <a class="mui-control-item" href="#item3">ONU</a>
+		  		    <a class="mui-control-item" href="#item3">CM</a>
+		  		</div>
+	  	</div>
+	  		<ul class="bar-right-icons mui-pull-right nm3k-hide-right" id="rightIcons">
+	  			<li>
+	  				<a id='search' href="javascript:void(0)" class="mui-pull-right iconfont icon-zoom mui-icon mR0-must"></a>
+	  			</li>
+				<li>
+	  				<a id='setting' href="javascript:void(0)" class="mui-pull-right  iconfont icon-wheel mui-icon"></a>
+	  			</li>
+	  		</ul>
+		</header>
+		<div class="mui-content">
+			<div class="nm3k-collapse-container" id="attention-list">
+				<span>关注的</span>
+				<label id="collapse-btn">收起</label>
+			</div>
+			<ul class="mui-table-view mT0-must result" id="result">
+			    
+			</ul>
+			<div class="nm3k-collapse-container mT10" id="recent-list">
+				<span>最近访问的</span>
+				<label id="collapse-btn2">收起</label>
+			</div>
+			<ul class="mui-table-view mT0-must" id="recentVisited">
+			    
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/tools.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			//获取认证失败列表的数据;
+			function getFailListData(callback){
+				mui.ajax('../js/data.js',{
+					data:{},
+					dataType:'text',//服务器返回json格式数据
+					type:'GET',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；	              
+					success:function(data){
+						var json = JSON.parse(data);
+						//创建关注列表;
+						callback(json, 'result');
+						//创建最近访问的列表;
+						var newArr = [];
+						for(var i=0; i<json.length; i++){
+							if(json[i].recentVisited){
+								newArr.push(json[i]);
+							}							
+						}
+						callback(newArr, 'recentVisited');
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			getFailListData(createDom);
+			
+			//生成DOM信息;
+			function createDom(arr, renderId){
+				var $result = document.getElementById(renderId);
+				var str = TEMPLATE.oltList.join("");
+			    var newStr = '';
+			    mui.each(arr, function(i, v){
+			    	var cls = (v.status == 'online') ? 'online' : 'offline';
+			    	var status = (v.status == 'online') ? '在线' : '离线';
+			    	newStr += fStringFormat(str, v.alias, cls, status, v.mac, v.ip, v.entityId);	
+			    })
+			    $result.innerHTML = newStr;			    
+			}
+			
+			
+			mui("body").on('tap','#barcodeBtn',function(){
+			  mui.openWindow({
+			    id:'barcodeBtn',
+			    url:'../barcode.html'
+			  });
+			}) 
+			mui("body").on('tap','#search',function(){
+			  mui.openWindow({
+			    id:'search',
+			    url:'../main/search.html'
+			  });
+			}) 
+			mui("body").on('tap','#setting',function(){
+			  mui.openWindow({
+			    id:'setting',
+			    url:'../main/setting.html'
+			  });
+			}) 
+			
+			mui("body").on('tap','#map',function(){
+			  mui.openWindow({
+			    id:'map',
+			    url:'../main/location.html'
+			  });
+			})
+			mui("#result").on('tap','li',function(e){
+				var clickLi = this;
+				var entityId = this.getAttribute("name");
+				var target = (e.target.tagName).toUpperCase();
+				if(target == 'H5'){ //删除图标;
+					var btnArray = ['确定', '取消'];
+					var tip = fStringFormat('确定要删除 {0} 吗？', e.target.getAttribute("name"));
+					mui.confirm(tip, '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							clickLi.parentNode.removeChild(clickLi);
+						}
+					})
+				}else{
+					var cls = document.body.classList.value;
+					var reg = /is-showEdit/;
+					if(reg.test(cls)){ //编辑模式下，不能进入页面;
+						return;
+					}
+			  		mui.openWindow({
+			    		id:'oltdetail',
+			    		url:'../main/olt/oltdetail.html?entityId='+ entityId
+			  		});
+				}
+			})
+			//点击最近访问的;
+			mui("#recentVisited").on('tap','li',function(e){
+				var entityId = this.getAttribute("name");
+				mui.openWindow({
+		    		id:'oltdetail',
+		    		url:'../main/olt/oltdetail.html?entityId='+ entityId
+		  		});	
+			});
+			mui("body").on('tap','#collapse-btn',function(){
+				var txt = this.innerText,
+				    $container = document.getElementById("attention-list"),
+				    newTxt = '收起',
+				    display = 'block';
+				switch(txt){
+					case '收起':
+						newTxt = '展开';
+						display = 'none';
+						$container.style.borderBottom = "1px solid #c8c7cc";
+						break;
+					case '展开':
+						$container.style.borderBottom = "none";
+						break;
+				}
+				document.getElementById("result").style.display = display;
+				this.innerText = newTxt;
+			});
+			mui("body").on('tap','#collapse-btn2',function(){
+				var txt = this.innerText,
+				    $container = document.getElementById("recent-list"),
+				    newTxt = '收起',
+				    display = 'block';
+				switch(txt){
+					case '收起':
+						newTxt = '展开';
+						display = 'none';
+						$container.style.borderBottom = "1px solid #c8c7cc";
+						break;
+					case '展开':
+						$container.style.borderBottom = "none";
+						break;
+				}
+				document.getElementById("recentVisited").style.display = display;
+				this.innerText = newTxt;
+			});
+			
+			//点击编辑按钮;
+			mui("body").on('tap','#editBtn',function(){
+				var txt = this.innerText;
+				switch(txt){
+					case '编辑':
+						this.innerText = '完成';
+						//hideHeader(false);
+						document.body.classList.add('is-showEdit');
+						break;
+					case '完成':
+						this.innerText = '编辑';
+						//hideHeader(true);
+						document.body.classList.remove('is-showEdit');
+						break;
+				}
+			});
+			//点击编辑隐藏掉头部按钮组和右侧图标;
+			function hideHeader(para){
+				var str = para ? 'block' : 'none';
+				document.getElementById("headerBtnGroup").style.display = str;
+				document.getElementById("rightIcons").style.display = str;
+			}
+			
+		</script>
+	</body>
+</html> 

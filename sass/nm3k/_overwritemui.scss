@@ -1,0 +1,87 @@
+/* 
+ ***************************   界面顶部bar   ************************
+ */
+.mui-bar{
+    .nm3k &{
+        background-color: $bar-bgcolor;
+        a{
+            color: $bar-color;
+        }
+    } 
+    .mui-btn-link{
+        color: $btn-link;
+        &:active{
+            color: $btn-link-active;
+        }
+    }
+}
+
+.mui-title{
+    .nm3k &{
+        color : $bar-color;
+    }
+}
+
+
+.absLayout-segment{
+    @include absLayout;
+    width: 100%;
+    .mui-segmented-control{
+        border-color: $segment-border-color;
+        .mui-control-item {
+            line-height: 28px;
+            border-left-color: $segment-border-color;   
+        }
+        .mui-control-item.mui-active{
+            background: $segment-active-bgcolor;
+            color: $segment-active-color;
+        }
+    }
+}
+/*
+ ***************************     界面底部bar   **********************
+ */
+.mui-bar-tab{
+    .nm3k &{
+        background: $sub-bar-bgcolor;
+        a{
+            color: $sub-bar-color;
+            &.mui-active{ color: $sub-bar-active-color}
+        }
+        
+    }
+}
+/* 
+ ***************************    界面按钮      **************************
+ */
+.mui-btn-primary{
+    .nm3k &{
+        background: $btn-primary;
+        border: 1px solid $btn-primary;
+    }
+    .nm3k &:active{
+        background: $btn-primary-active;
+        border: 1px solid $btn-primary-active;
+    }
+}
+.mui-btn-block{
+    padding: 12px 0px;
+}
+
+/*
+ 
+ */
+.mui-switch.mui-active{
+    .nm3k &{
+        background: $btn-primary;
+        border: 1px solid $btn-primary;
+    }    
+}
+.mui-badge-success{
+    background-color: $online-bg;
+}
+.widthout-bline{
+    &:after{
+        content: none;   
+    }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../css/main.css" />
+        <script src="../../js/mui.min.js"></script>
+        <script src="location.js"></script>
+        <style type="text/css">
+            #map {
+                width: 100%;
+                position: fixed;
+                top: 45px;
+                bottom: 0px;
+                line-height: 200px;
+                text-align: center;
+                background: #FFFFFF;
+            }
+        </style>
+        <header class="mui-bar mui-bar-nav">
+            <a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+        </header>
+    </head>
+
+    <body class="nm3k">
+        <script type="text/javascript" src="../../libs/mix-storage/mixStorage.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var map = null,
+                marker = null;
+            mui.plusReady(function() {
+                mui.init();
+                map = new plus.maps.Map("map");
+                //               map.showUserLocation(true);
+                map.getUserLocation(function(state, pos) {
+                    if(0 == state) {
+                        map.setCenter(pos);
+                        //                       map.centerAndZoom(pos, 12);
+                        marker = new plus.maps.Marker(pos);
+                        marker.setIcon("../../img/logo.png");
+                        marker.setLabel("您的位置");
+                        marker.setDraggable(true);
+                        map.addOverlay(marker);
+                        marker.onDrag = function(marker) {
+                            plus.maps.Map.reverseGeocode(marker.getPoint(), {}, function(event) {
+                                var address = event.address;
+                                var bubble = new plus.maps.Bubble(address);
+                                marker.setBubble(bubble);
+                                bubble.onclick = function(bubble) {
+                                    backToPreconfig();
+                                }
+                            }, function(e) {
+                                alert(JSON.stringify(e))
+                            })
+                            //                          alert("Drag:" + JSON.stringify((marker.getPoint())));
+                        }
+                    }
+                })
+
+            });
+
+            mui("body").on('tap', '#back', function() {
+                mui.back();
+            });
+        </script>
+        <div id="map">地图加载中...</div>
+    </body>
+
+</html>

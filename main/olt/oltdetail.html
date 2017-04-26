@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/main.css" />
+    	</head>
+
+	<body class="nm3k">
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+			<h1 class="mui-title">基本信息(152)</h1>
+			<ul class="bar-right-icons mui-pull-right">
+				<li>
+					<a id='refresh' href="javascript:void(0)" class="iconfont icon-refresh mui-icon mR0-must"></a>
+				</li>
+	  			<li>
+					<a id='more' href="#popover" class="iconfont icon-dot mui-icon"></a>
+				</li>
+			</ul>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item mui-active" id="baseInfo-link">
+		    	<span class="mui-icon iconfont icon-baseinfo"></span>
+		        <span class="mui-tab-label">基本信息</span>
+		    </a>
+		    <a class="mui-tab-item" id="cmtslist-link">
+		        <span class="mui-icon iconfont icon-cmts"></span>
+		        <span class="mui-tab-label">CMTS列表</span>
+		    </a>
+		    <a class="mui-tab-item" id="onulist-link">
+		        <span class="mui-icon iconfont icon-onu"></span>
+		        <span class="mui-tab-label">ONU列表</span>
+		    </a>
+		    <a class="mui-tab-item" id="fail-link">
+		        <span class="mui-icon iconfont icon-fail"></span>
+		        <span class="mui-tab-label">认证失败列表</span>
+		    </a>
+		</nav>
+		<div class="mui-content">
+			<div class="mui-control-content mui-active">
+				<div class="nm3k-panel" id="baseInfo-panel">
+					<!--<h5>
+						OLT基本信息
+					</h5>
+					<div class="nm3k-line">
+						<label>设备类型</label>
+						<span>PN8603</span>
+					</div>
+					<div class="nm3k-line">
+						<label>设备别名</label>
+						<span>PN8600</span>
+					</div>
+					<div class="nm3k-line">
+						<label>管理IP</label>
+						<span>172.17.2.152</span>
+					</div>
+					<div class="nm3k-line">
+						<label>MAC</label>
+						<span>00:24:68:72:29:C0</span>
+					</div>
+					<div class="nm3k-line">
+						<label>状态</label>
+						<span>在线</span>
+					</div>
+					<div class="nm3k-line">
+						<label>在线时间</label>
+						<span>2天20小时19分钟5秒</span>
+					</div>
+					<div class="nm3k-line">
+						<label>软件版本</label>
+						<span>PN8600-V1.9.0.7</span>
+					</div>
+					<div class="nm3k-line">
+						<label>CPU利用率</label>
+						<span>3%</span>
+					</div>
+					<div class="nm3k-line">
+						<label>内存利用率</label>
+						<span>65%</span>
+					</div>-->
+				</div>
+			</div>
+			<div class="mui-control-content">
+				<ul class="mui-table-view mT0-must" id="result">
+				    <li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;">
+				            <div class="mui-media-body nm3k-list">
+				                3/3:1
+				                <p class='mui-ellipsis'><span class="online">在线</span><span class="mac">00:24:68:70:E7:FF</span>CC8800D-E(强集中)</p>
+				            </div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;">
+				            <div class="mui-media-body nm3k-list">
+				                3/3:2
+				                <p class='mui-ellipsis'><span class="online">在线</span><span class="mac">00:24:68:70:E7:FF</span>CC8800D-E(强集中)</p>
+				            </div>
+				        </a>
+				    </li>
+				    <li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;">
+				            <div class="mui-media-body nm3k-list">
+				                3/3:3
+				                <p class='mui-ellipsis'><span class="offline">在线</span><span class="mac">00:24:68:70:E7:FF</span>CC8800D-E(强集中)</p>
+				            </div>
+				        </a>
+				    </li>
+				</ul>
+			</div>
+			<div class="mui-control-content">
+				<ul class="mui-table-view mT0-must" id="putOnuList">
+				    <!--<li class="mui-table-view-cell mui-media">
+				        <a href="javascript:;" class="pR100-must">
+				            <div class="mui-media-body nm3k-list">
+				            	00:24:68:70:E7:FF
+				            	<p class="mui-ellipsis">3/3:2</p>
+				                <p class='mui-ellipsis'><span class="online">在线</span>PN8626</p>
+				            </div>
+				        </a>
+				        <div class="right-link">
+					        <a href="javascript:;">
+					        	重启
+					        </a>
+					        <a href="javascript:;">
+					        	删除
+					        </a>
+				        </div>
+				    </li>-->
+				</ul>
+			</div>
+			<div class="mui-control-content">
+				暂无数据
+			</div>
+		</div>
+		
+		<div id="popover" class="mui-popover">
+		  <ul class="mui-table-view">
+		    <li class="mui-table-view-cell"><a id='reTopo' href="#">重新拓扑</a></li>
+		    <li class="mui-table-view-cell"><a id='addInterest' href="#">添加关注</a></li>
+		    <li class="mui-table-view-cell"><a id='backToInterested' href="#">返回关注列表</a></li>
+		    <li class="mui-table-view-cell"><a id='setting' href="#">设置</a></li>
+		  </ul>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/tools.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script type="text/javascript">
+			init(createDom, '../../js/data.js');
+			function createDom(json){
+				var entityId = getUrlParam('entityId');
+				for(var i=0; i<json.length; i++){
+					if(json[i].entityId == entityId){
+						document.querySelector(".mui-title").innerText = fStringFormat('基本信息({0})',json[i].alias);
+						var $baseInfo = document.getElementById("baseInfo-panel");
+						var html = TEMPLATE.oltBaseInfo.join('');
+						html = fStringFormat(html, json[i]);
+						$baseInfo.innerHTML = html;
+						break;
+					}
+				}
+			}
+			function init(callback, url){
+				mui.ajax(url, {
+					data:{},
+					dataType:'text',//服务器返回json格式数据
+					type:'GET',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；	              
+					success:function(data){
+						var json = JSON.parse(data);
+						callback(json);
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			
+			mui("body").on('tap','#back',function(){
+			  	mui.back();
+			}) 
+			mui("body").on('tap','#backToInterested',function(){
+				mui.openWindow({
+				  	id:'interested',
+					url:'../../main/interested.html'
+				});
+			}) 
+			mui("body").on('tap','#setting',function(){
+				mui.openWindow({
+				  	id:'setting',
+					url:'../../main/setting.html'
+				});
+			}) 
+			mui("#result").on('tap','li',function(){
+			  mui.openWindow({
+			    id:'cmtsdetail',
+			    url:'../../main/cmts/cmtsdetail.html'
+			  });
+			})
+			mui('#putOnuList').on('tap','.right-link a',function(){
+				switch(this.innerText){
+					case '删除':
+						mui.confirm('确认删除吗？','提示', ['是','否'], function(e){
+							if(e.index==0){
+								alert('删除')
+							}
+						});
+						break;
+					case '重启':
+						mui.confirm('确认重启吗？','提示', ['是','否'], function(e){
+							if(e.index==0){
+								alert('重启')
+							}
+						});
+						break;
+				}
+			});
+			
+			
+			mui(".mui-bar-tab").on('tap','a',function(){
+			  var tabId = this.id;
+			  var arr = document.querySelectorAll('.mui-control-content');
+			  for(var i=0; i<arr.length; i++){
+			  	arr[i].className = "mui-control-content";	
+			  }
+			  var indexNum = 1;
+			  switch(tabId){
+			  	case 'baseInfo-link':
+			  		indexNum = 1;
+			  		break;
+			  	case 'cmtslist-link':
+			  		indexNum = 2;
+			  		break;
+			  	case 'onulist-link':
+			  		indexNum = 3;
+			  		loadOnuList();
+			  		break;
+			  	case 'fail-link':
+			  		indexNum = 4;
+			  		break;
+			  }
+			  document.querySelector('.mui-control-content:nth-child('+ indexNum +')').className = 'mui-control-content mui-active';
+			});
+			
+			
+			function loadOnuList(){
+				document.getElementById("putOnuList").innerHTML = "";
+				init(createOnuListDom, '../../js/data-onu.js');
+			}
+			function createOnuListDom(data){
+				var str = TEMPLATE.onulist.join("");
+				var html = '';				
+				mui.each(data, function(i, v){
+					html += fStringFormat(str, v);
+				});
+				document.getElementById("putOnuList").innerHTML = html;
+			}
+			mui('#putOnuList').on('tap','li .nm3k-list',function(){
+				var onuId = this.getAttribute("name");
+				mui.openWindow({
+				  	id:'onudetail',
+					url:'../../main/onu/onudetail.html?onuId=' + onuId
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/main.css" />
+		<style type="text/css">
+			#headerBtnGroup {
+				position: absolute;
+				left: 50px;
+				width: 400px;
+			}
+		</style>
+	</head>
+
+	<body class="nm3k white-body">
+		<header class="mui-bar mui-bar-nav clear-shadow">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+			<h1 class="mui-title">一键检测</h1>
+			<a id='location' href="javascript:void(0)" class="mui-pull-right mui-icon mui-icon-location"></a>
+		</header>
+		<div class="mui-content white-body">
+			<div id="putCir"></div>
+			<div class="nm3k-detect-list pT15 pB50" id="nm3k-detect-list">
+				<dl class="nm3k-detect">
+					<dt><span>&#xe616;</span>ONU上线情况</dt>
+					<dd><span>&nbsp;</span><p id="onuOnlineState"></p></dd>
+					<dd class="nm3k-detect-icon"></dd>
+				</dl>
+				<dl class="nm3k-detect">
+					<dt><span>&#xe616;</span>ONU光接收功率</dt>
+					<dd><span>&nbsp;</span><p id="onuOptical"></p></dd>
+					<dd class="nm3k-detect-icon"></dd>
+				</dl>
+				<dl class="nm3k-detect">
+					<dt><span>&#xe616;</span>WAN口状态</dt>
+					<dd><span>&nbsp;</span><p id="WanState"></p></dd>
+					<dd class="nm3k-detect-icon"></dd>
+				</dl>
+				<dl class="nm3k-detect">
+					<dt><span>&#xe616;</span>Internet连通性</dt>
+					<dd><span>&nbsp;</span><p id="InternetConnect"></p></dd>
+					<dd class="nm3k-detect-icon"></dd>
+				</dl>
+				<dl class="nm3k-detect">
+					<dt><span>&#xe616;</span>Wifi状态</dt>
+					<dd><span>&nbsp;</span><p id="WifiState"></p></dd>
+					<dd class="nm3k-detect-icon"></dd>
+				</dl>
+				<dl class="nm3k-detect">
+					<dt><span>&#xe616;</span>NM3000连接状态</dt>
+					<dd><span style="visibility: hidden;">&nbsp;</span><p id="NM3000Connect"></p></dd>
+					<dd class="nm3k-detect-icon"></dd>
+				</dl>
+			</div>
+			<!--<div id="list-container"></div>
+			<ul class="mui-table-view mT50">
+				<li class="mui-table-view-cell">
+					<a>onu上线情况</a>
+					<a id="onuOnlineState"></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>onu光接收功率</a>
+					<a id="onuOptical"></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>WAN口状态</a>
+					<a id="WanState"></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>网络连接状态</a>
+					<a id="InternetConnect"></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>Wifi已连设备</a>
+					<a id="WifiState"></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>NM3000连接状态</a>
+					<a id="NM3000Connect"></a>
+				</li>
+			</ul>-->
+		</div>
+		<dl class="nm3k-bottom-sheets">
+    		<dd>
+    			<a href="javascript:;" id="cancelDetectBtn"><i class="iconfont icon-check"></i>取消检测</a>	
+    		</dd>
+    		<dt></dt>
+    		<dd>
+    			<a href="javascript:;" id="reDetect"><i class="iconfont icon-refresh"></i>重新检测</a>    			
+    		</dd>
+    	</dl>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../libs/zepto/zepto.js"></script>
+		<script src="../../libs/art-template/template-web.js"></script>
+		<script id="nm3k-cir-dom" type="text/html">
+			<div class="nm3k-dashboard" id="dashboard">
+		    	<div class="nm3k-dashboard-cir">
+		    		<% for(var i = 0; i <= 46; i++){ %>
+		    			<div class="nm3k-cir-line rotate<%= i %>"><span></span></div>					    
+					<% } %>
+		    	</div>	
+		    	<div class="nm3k-dashboard-cir-dashline">
+		    		<p><%= topTxt %></p>
+		    		<span><%= centerTxt %><label><%= unit %></label></span>
+		    	</div>
+		    	<div class="nm3k-dashboard-gradient">
+		    		<p><%= subTxt %></p>
+		    	</div>
+		    </div>
+		</script>
+		<script src="../../js/Nm3kCir.js"></script>
+		<script src="detect.js"></script>
+		<script type="text/javascript" src="../../libs/mix-storage/mixStorage.js"></script>
+		</script>
+		<script type="text/javascript">
+			var cir = new Nm3kCir({
+				renderTo: 'putCir',
+				topTxt: '检测得分',
+				centerTxt: '0',
+				unit: '',
+				subTxt: '检测正在初始化...'
+			});
+			cir.init();
+			
+			var score = 0; //得分;
+			var stepNum = 0; //目前进行到了第几个步骤;
+			var bCancelDetect = false; //是否中途取消检测;
+			var steps = [{
+				fn: testONUstate,
+				score : 20,
+				loadTxt : '正在检测ONU上线情况...'
+			},{
+				fn: testOpts,
+				score : 20,
+				loadTxt : '正在检测ONU光接收功率...'
+			},{
+				fn: testWanPort,
+				score : 20,
+				loadTxt : '正在检测WAN口状态...'
+			},{
+				fn: testInternet,
+				score : 20,
+				loadTxt : '正在检测Internet连通性...'
+			},{
+				fn: testWifi,
+				score : 20,
+				loadTxt : '正在检测Wifi状态...'
+			},{
+				fn: testNMConnect,
+				score : 0,
+				loadTxt : '正在检测NM3000连接状态...'
+			}];
+			function stepLoad(){
+				if(bCancelDetect){
+					stopDetectEnd();
+					return;
+				}
+				//var $step = document.getElementById("nm3k-detect-list").querySelector('.nm3k-detect:nth-child('+ stepNum + 1 +')');
+				cir.setBottomTxt(steps[stepNum]['loadTxt']);
+				var $step = $('#nm3k-detect-list .nm3k-detect').eq(stepNum)[0];
+				$step.classList.add('nm3k-detect-loading');
+				var nowItem = $('#nm3k-detect-list .nm3k-detect').eq(stepNum).offset().top + 80;
+				var winHeight = $(window).height();
+				if(nowItem >= winHeight){
+					$('body').scrollTop(nowItem-winHeight);	
+				}
+				if(stepNum < steps.length){
+					steps[stepNum]['fn']();
+				}
+			}
+			function nextFn(bSuccess){
+				if(bCancelDetect){
+					stopDetectEnd();
+					return;
+				}
+				//var $pre = document.getElementById("nm3k-detect-list").querySelector('.nm3k-detect:nth-child('+ stepNum + 1 +')');
+				var $pre = $('#nm3k-detect-list .nm3k-detect').eq(stepNum)[0];
+				$pre.classList.remove('nm3k-detect-loading');
+				if(bSuccess){ //上个步骤操作成功;
+					//加分;
+					score += steps[stepNum]['score'];
+					cir.setCenterTxt(score);
+					cir.setPercent(score);
+					$pre.classList.add('nm3k-detect-success');
+				}else{
+					$pre.classList.add('nm3k-detect-fail');
+				}
+				stepNum++;
+				if(stepNum == steps.length){
+					endDetect();
+					return;
+				}
+				stepLoad();
+			}
+			function endDetect(){
+				cir.setBottomTxt('检测完毕');	
+			}
+			//取消检测;
+			function stopDetect(){
+				bCancelDetect = true;
+				cir.setBottomTxt('检测被取消了');
+			}
+			//取消检测结束;
+			function stopDetectEnd(){
+				var $loading = $('.nm3k-detect-loading');
+				if($loading.length == 1){
+					$('#nm3k-detect-list .nm3k-detect').each(function(i, v){
+						if(v.hasClass('.nm3k-detect-loading')){
+							v.removeClass('.nm3k-detect-loading');
+						}
+					})
+				}
+				bCancelDetect = false;
+			}
+			//重新检测;
+			function reDetect(){
+				
+			}
+			function reset(){
+				
+			}
+		
+			
+			mui.plusReady(function () {  
+	        	mui.init();  
+	        	stepLoad();
+	      	});
+	      	mui("body").on('tap','#back',function(){
+		  		mui.back();
+			}); 
+		    mui("body").on('tap','#location',function(){
+			  	mui.openWindow({
+			  		id:'location',
+			  		url:'../location/location.html'
+			  	})
+			}); 
+			document.getElementById("cancelDetectBtn").addEventListener('tap', function(){
+				stopDetect();
+			});
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+        <link href="../../css/main.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="mui-content" id="list-container">
+
+        </div>
+        <a id="add-preconfig-btn" href="javascript:;" class="nm3k-cir-btn">
+            <i class="iconfont icon-scan"></i>
+        </a>
+        <script src="../../js/mui.min.js"></script>
+        <script src="../../libs/art-template/template-web.js"></script>
+        <script src="../../libs/art-template/template-filter.js"></script>
+        <script src="../../libs/mix-storage/mixStorage.js"></script>
+
+        <script id="test" type="text/html">
+            <ul class="mui-table-view mT0-must" id="onu-list">
+                {{each list onu i}}
+                <li class="mui-table-view-cell mui-media" data-onuid="{{onu.mac}}">
+                    <a href="javascript:;" class="relative-layout">
+                        <div class="mui-pull-right nm3k-time">{{onu.time | intelligentTimeFormat}}</div>
+                        <div class="mui-media-body">
+                            {{onu.name}}
+                            <p class='mui-ellipsis'><span class="mR10">{{onu.mac}}</span> {{onu.sn}}</p>
+                        </div>
+                        <div class="list-right-conner">
+                            <% if (onu.current) { %><span class="current">当前</span>
+                            <% } %>
+                            <% if (onu.preconfig) { %><span class="preconfig">预配置</span>
+                            <% } %>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </script>
+        <script src="../../libs/zepto/zepto.js"></script>
+        <script src="accesslist.js"></script>
+
+        <script type="text/javascript">
+            mui.init();
+
+            mui.plusReady(function() {
+                // 生成
+                loadAccessList();
+                window.addEventListener('refresh', function(event) {
+                    loadAccessList();
+                });
+                
+                mui('#list-container').on('tap', 'li', function(e) {
+                    var onuId = this.getAttribute('data-onuid');
+                    mui.openWindow({
+                        id: 'onuinfo',
+                        url: '../onuinfo/onuinfo.html',
+                        extras: {
+                            onuId: onuId
+                        }
+                    });
+                })
+                var addPreconfigBtn = document.querySelector("#add-preconfig-btn");
+                addPreconfigBtn.addEventListener('tap', function() {
+                    var $body = document.body;
+                    $body.classList.add('is-cir-btn');
+                    setTimeout(function() {
+                        $body.classList.remove('is-cir-btn');
+                        openAddPreConfig();
+                    }, 500);
+                });
+            })
+        </script>
+    </body>
+
+</html>

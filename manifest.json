@@ -1,0 +1,572 @@
+{
+    "@platforms": [
+        "android",
+        "iPhone"
+    ],
+    "id": "terminal",
+    "name": "终端助手",
+    "version": {
+        "name": "1.0.0",
+        "code": "1"
+    },
+    "description": "",
+    "icons": {
+        "72": "icon.png"
+    },
+    "launch_path": "view/login/login.html",
+    "developer": {
+        "name": "jay",
+        "email": "hujiangyi@top-vision.cn",
+        "url": "http://ems.top-vision.cn:8110/spread"
+    },
+    "permissions": {
+        "Cache": {
+            "description": "管理应用缓存"
+        },
+        "Console": {
+            "description": "跟踪调试输出日志"
+        },
+        "Events": {
+            "description": "应用扩展事件"
+        },
+        "NativeUI": {},
+        "Camera": {},
+        "Barcode": {},
+        "Maps": {},
+        "Geolocation": {},
+        "Gallery": {},
+        "UI": {},
+        "Webview": {},
+        "Navigator": {},
+        "XMLHttpRequest": {
+            "description": "跨域网络连接"
+        },
+        "Storage": {},
+        "Invocation": {},
+        "NativeObj": {},
+        "Runtime": {}
+    },
+    "plus": {
+        "splashscreen": {
+            "autoclose": true,
+            "waiting": true,
+            "delay": "1000"
+        },
+        "popGesture": "close",
+        "runmode": "normal",
+        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+        "distribute": {
+            "apple": {
+                "StatusBarBackground": "#008ed6",
+                "appid": "",
+                "mobileprovision": "",
+                "password": "",
+                "p12": "",
+                "devices": "universal",
+                "frameworks": []
+            },
+            "google": {
+                "packagename": "",
+                "keystore": "",
+                "password": "",
+                "aliasname": "",
+                "permissions": [
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>"
+                ]
+            },
+            "orientation": [
+                "portrait-primary"
+            ],
+            "icons": {
+                "ios": {
+                    "prerendered": true,
+                    "auto": "",
+                    "iphone": {
+                        "normal": "unpackage/res/icons/57x57.png",
+                        "retina": "unpackage/res/icons/114x114.png",
+                        "retina7": "unpackage/res/icons/120x120.png",
+                        "retina8": "unpackage/res/icons/180x180.png",
+                        "spotlight-normal": "unpackage/res/icons/29x29.png",
+                        "spotlight-retina": "unpackage/res/icons/58x58.png",
+                        "spotlight-retina7": "unpackage/res/icons/80x80.png",
+                        "settings-normal": "unpackage/res/icons/29x29.png",
+                        "settings-retina": "unpackage/res/icons/58x58.png",
+                        "settings-retina8": "unpackage/res/icons/87x87.png"
+                    },
+                    "ipad": {
+                        "normal": "unpackage/res/icons/72x72.png",
+                        "retina": "unpackage/res/icons/144x144.png",
+                        "normal7": "unpackage/res/icons/76x76.png",
+                        "retina7": "unpackage/res/icons/152x152.png",
+                        "spotlight-normal": "unpackage/res/icons/50x50.png",
+                        "spotlight-retina": "unpackage/res/icons/100x100.png",
+                        "spotlight-normal7": "unpackage/res/icons/40x40.png",
+                        "spotlight-retina7": "unpackage/res/icons/80x80.png",
+                        "settings-normal": "unpackage/res/icons/29x29.png",
+                        "settings-retina": "unpackage/res/icons/58x58.png"
+                    }
+                },
+                "android": {
+                    "mdpi": "unpackage/res/icons/48x48.png",
+                    "ldpi": "unpackage/res/icons/48x48.png",
+                    "hdpi": "unpackage/res/icons/72x72.png",
+                    "xhdpi": "unpackage/res/icons/96x96.png",
+                    "xxhdpi": "unpackage/res/icons/144x144.png"
+                }
+            },
+            "splashscreen": {
+                "ios": {
+                    "iphone": {
+                        "default": "",
+                        "retina35": "",
+                        "retina40": "img/page640-1136.png",
+                        "retina47": "img/page750-1334.png",
+                        "retina55": "img/page1242-2208.png",
+                        "retina55l": ""
+                    },
+                    "ipad": {
+                        "portrait": "",
+                        "portrait-retina": "",
+                        "landscape": "",
+                        "landscape-retina": "",
+                        "portrait7": "",
+                        "portrait-retina7": "",
+                        "landscape7": "",
+                        "landscape-retina7": ""
+                    }
+                },
+                "android": {
+                    "mdpi": "",
+                    "ldpi": "",
+                    "hdpi": "img/page480-800.png",
+                    "xhdpi": "img/page720-1280.png",
+                    "xxhdpi": "img/page1080-1920.png"
+                }
+            },
+            "debug": true
+        }
+    },
+    "fullscreen": false,
+    "dependencies": {
+		"pages": {
+			"main/setting.html": {
+				"href": "main/setting.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 0
+			},
+			"main/cm/cmdetail.html": {
+				"href": "main/cm/cmdetail.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"priority": 3
+			},
+			"main/cmts/more/subupchannel.html": {
+				"href": "main/cmts/more/subupchannel.html",
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png"
+				],
+				"priority": 6
+			},
+			"main/cmts/more/cmtsmore.html": {
+				"href": "main/cmts/more/cmtsmore.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"main/cmts/more/subupchannel.html"
+				],
+				"priority": 6
+			},
+			"main/cmts/cmtsdetail.html": {
+				"href": "main/cmts/cmtsdetail.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"main/cm/cmdetail.html",
+					"main/setting.html",
+					"main/interested.html",
+					"main/cmts/more/cmtsmore.html"
+				],
+				"priority": 3
+			},
+			"main/onu/onudetail.html": {
+				"href": "main/onu/onudetail.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js",
+					"js/tools.js",
+					"js/data-onu.js"
+				],
+				"priority": 4
+			},
+			"main/olt/oltdetail.html": {
+				"href": "main/olt/oltdetail.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js",
+					"js/tools.js",
+					"js/data-onu.js",
+					"js/data.js"
+				],
+				"refer": [
+					"main/interested.html",
+					"main/setting.html",
+					"main/cmts/cmtsdetail.html",
+					"main/onu/onudetail.html"
+				],
+				"priority": 1
+			},
+			"main/search.html": {
+				"href": "main/search.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"css/mui.picker.all.css",
+					"js/mui.min.js",
+					"js/mui.picker.all.js"
+				],
+				"priority": 3
+			},
+			"main/interested.html": {
+				"href": "main/interested.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js",
+					"js/tools.js",
+					"js/data.js"
+				],
+				"refer": [
+					"main/olt/oltdetail.html",
+					"main/setting.html",
+					"main/search.html"
+				],
+				"priority": 1
+			},
+			"login.html": {
+				"href": "login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.eot",
+					"fonts/iconfont.woff",
+					"fonts/iconfont.ttf",
+					"img/login_bg.png",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"main/setting.html",
+					"main/interested.html"
+				],
+				"priority": 0
+			},
+			"view/login/login.html": {
+				"resources": [
+					"css/main.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"img/login_bg.png",
+					"fonts/iconfont.woff",
+					"view/login/login.js",
+					"libs/mix-storage/mixStorage.js"
+				],
+				"refer": [
+					"view/main/main.html",
+					"view/detect/detect.html",
+					"view/setting/setting.html"
+				],
+				"priority": 0
+			},
+			"view/main/main.html": {
+				"resources": [
+					"css/main.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"view/main/list.html",
+					"js/mui.min.js",
+					"fonts/iconfont.woff",
+					"view/main/accesslist.html"
+				],
+				"refer": [
+					"view/search/search.html",
+					"view/search/barcode.html",
+					"main/setting.html",
+					"view/setting/setting.html"
+				],
+				"priority": 0
+			},
+			"view/openreport/openreport.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"css/main.css",
+					"js/Nm3kCir.js",
+					"libs/art-template/template-web.js",
+					"fonts/iconfont.woff"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"view/onuinfo/onuinfo.html": {
+				"resources": [
+					"css/main.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"fonts/mui.ttf",
+					"view/onuinfo/onuinfo.js",
+					"libs/mix-storage/mixStorage.js",
+					"view/main/accesslist.js",
+					"libs/zepto/zepto.js",
+					"view/detect/detect.html"
+				],
+				"refer": [
+					"view/openreport/openreport.html",
+					"view/preconfig/preconfig.html",
+					"view/config/configwizard.html"
+				],
+				"priority": 0
+			},
+			"view/preconfig/addpreconfig.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"libs/mix-storage/mixStorage.js",
+					"libs/zepto/zepto.js",
+					"view/preconfig/addpreconfig.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [
+					"view/preconfig/addpreconfig_wifi.html"
+				],
+				"priority": 0
+			},
+			"view/main/accesslist.html": {
+				"resources": [
+					"libs/mix-storage/mixStorage.js",
+					"css/mui.min.css",
+					"libs/art-template/template-web.js",
+					"view/main/accesslist.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/main.css",
+					"fonts/iconfont.woff",
+					"libs/art-template/template-filter.js",
+					"libs/zepto/zepto.js"
+				],
+				"refer": [
+					"view/preconfig/addpreconfig.html",
+					"view/onuinfo/onuinfo.html"
+				],
+				"priority": 0
+			},
+			"view/search/search.html": {
+				"resources": [
+					"css/main.css",
+					"css/mui.min.css",
+					"fonts/iconfont.woff",
+					"view/search/search.js",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"libs/mix-storage/mixStorage.js",
+					"view/search/search.html",
+					"libs/art-template/template-web.js",
+					"view/main/accesslist.js"
+				],
+				"refer": [
+					"view/preconfig/preconfig.html",
+					"view/preconfig/addpreconfig.html",
+					"view/onuinfo/onuinfo.html"
+				],
+				"priority": 0
+			},
+			"view/search/barcode.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [
+					"view/search/search.html"
+				],
+				"priority": 0
+			},
+			"view/detect/detect.html": {
+				"resources": [
+					"view/detect/detect.js",
+					"view/detect/dataForDetect.js",
+					"css/main.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"libs/art-template/template-web.js",
+					"js/mui.min.js",
+					"fonts/iconfont.woff",
+					"view/onuinfo/onuinfo.html",
+					"js/Nm3kCir.js"
+				],
+				"refer": [
+					"view/location/location.html"
+				],
+				"priority": 0
+			},
+			"view/config/configwizard.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"view/preconfig/preconfig.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"view/setting/setting.html": {
+				"resources": [
+					"css/main.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/iconfont.woff",
+					"libs/mix-storage/mixStorage.js",
+					"view/setting/setting.js"
+				],
+				"refer": [
+					"view/login/login.html"
+				],
+				"priority": 0
+			},
+			"view/location/location.html": {
+				"resources": [
+					"view/location/location.js",
+					"css/mui.min.css",
+					"css/main.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"libs/mix-storage/mixStorage.js",
+					"libs/art-template/template-web.js",
+					"fonts/iconfont.woff"
+				],
+				"refer": [
+					"view/location/locationSearch.html",
+					"view/setting/setting.html"
+				],
+				"priority": 0
+			},
+			"view/location/locationSearch.html": {
+				"resources": [
+					"css/main.css",
+					"css/mui.min.css",
+					"view/location/location.js",
+					"js/mui.min.js",
+					"libs/mix-storage/mixStorage.js",
+					"fonts/iconfont.woff"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"img/page1242-2208.png",
+				"sass/nm3k/_mixins.scss",
+				"sass/nm3k/_fonts.scss",
+				"img/page750-1334.png",
+				"sass/nm3k/_normalize.scss",
+				"sass/nm3k/_variables.scss",
+				"sass/main.scss",
+				"config.rb",
+				"css/mui.css",
+				"img/page720-1280.png",
+				"img/page1080-1920.png",
+				"img/page480-800.png",
+				"sass/nm3k/mixins/_nm3k.scss",
+				"sass/nm3k/_list.scss",
+				"fonts/iconfont.svg",
+				"main/cmts/cmtsupchannel.html",
+				"sass/nm3k/_nm3k.scss",
+				"js/mui.js",
+				"img/page640-1136.png",
+				"sass/nm3k/_overwritemui.scss"
+			]
+		}
+	}
+}

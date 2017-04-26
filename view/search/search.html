@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+
+	<body class="nm3k white-body">
+		<header class="mui-bar mui-bar-nav">
+			<div class="nm3k-search nm3k-search-toleft nm3k-search-right-putlink">	
+				<input type="search" id="searchInput" class="nm3k-search-input" placeholder="搜索">
+				<i class="iconfont icon-zoom"></i>	
+			</div>
+			<button id='cancel' class="mui-btn mui-btn-link mui-pull-right mui-action-back">取消</button>
+		</header>
+		<div class="mui-content">
+			<div id='subtitle' class="nm3k-title">搜索历史</div>
+			<ul class="mui-table-view mT0-must result" id="history">
+				<!--记录及搜索结果-->
+			</ul>
+		</div>
+		<script type="text/javascript" src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../libs/mix-storage/mixStorage.js"></script>
+		<script src="../../libs/art-template/template-web.js"></script>
+		<script type="text/javascript" src="search.js"></script>
+		<script id="searchResultList" type="text/html">
+				{{each items item i}}
+					<li class="mui-table-view-cell js-searchResult">
+						{{item.mac}}
+						<% if (item.preconfig) { %>
+						  <span class="mui-badge mui-badge-success">预配置</span>
+						<% } %>				
+					</li>
+				{{/each}}
+		</script>
+		<script id="searchHistoryList" type="text/html">
+				{{each items item i}}
+					<li class="mui-table-view-cell nm3k-before-zoom js-searchHistory">
+						{{item}}
+						<span class="js-searchDelete nm3k-delete iconfont icon-trash"></span>
+					</li>
+				{{/each}}
+		</script>
+		
+		<script src="../main/accesslist.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				mui.plusReady(function() {
+					mui.init({
+						beforeback:function() {
+							var mainHtml = plus.webview.getWebviewById('main');
+							var accesslistHtml = plus.webview.getWebviewById('historyList');
+							//触发前往页面的自定义事件（例：AddNew）,从而进行数据刷新
+							mui.fire(mainHtml,'refresh');
+							mui.fire(accesslistHtml,'refresh');
+							//返回true，继续页面关闭逻辑
+							return true;
+						}						
+					});
+					var ws = plus.webview.currentWebview();
+					var mac = ws.mac;
+					if(mac != undefined) {
+						document.getElementById("searchInput").value = mac;
+					}
+					loadSearchRecord();
+					//关闭等待窗口并显示本页面
+					plus.nativeUI.closeWaiting();
+					mui.currentWebview.show();
+					//强制弹出软键盘
+					initNativeObjects();
+					showSoftInput2();
+					//plus.webview.getWebviewById('barcode').close();
+				});
+			}
+
+			//监听软键盘的搜索按键
+			document.getElementById("searchInput").addEventListener("keydown", function(e) {
+				if(13 == e.keyCode) { //点击了“搜索” 
+					document.activeElement.blur(); //隐藏软键盘 
+					value = this.value.replace(/[\ ]/g, ""); //若全是空格则不响应
+					if(value.length == 0) {
+						return;
+					}
+					var resultlist = searchOnu(formatQueryMac(this.value)); //搜索符合条件的onu
+					if(resultlist.length == 0) {
+						loadNewAddView(this.value);
+					}
+					//搜得到的逻辑在监听input变化时已经完成
+				}
+			}, false);
+
+			//监听搜索框变化事件事件
+			document.getElementById("searchInput").addEventListener('input', inputChangeSearch);
+
+			//监听点击某个搜索结果事件
+			mui("#history").on('tap', '.js-searchResult', showOnuInfo);
+
+			//监听记录删除
+			mui("#history").on('tap', ".js-searchDelete", deleteRecord);
+
+			//监听点击某条历史记录
+			mui("#history").on('tap', ".js-searchHistory", historysearch);
+		</script>
+	</body>
+
+</html>

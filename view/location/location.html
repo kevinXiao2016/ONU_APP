@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../css/main.css" />
+        <script src="../../js/mui.min.js"></script>
+        <script src="location.js"></script>
+        <style type="text/css">
+            #map {
+                width: 100%;
+                position: fixed;
+                top: 45px;
+                bottom: 0px;
+                line-height: 200px;
+                text-align: center;
+                background: #FFFFFF;
+            }
+        </style>
+        <header class="mui-bar mui-bar-nav">
+            <a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+            <a id='location' href="javascript:void(0)" class="mui-pull-right mui-icon mui-icon-location"></a>
+        </header>
+    </head>
+
+    <body class="nm3k">
+        <script src="../../libs/art-template/template-web.js"></script>
+        <script type="text/javascript" src="../../libs/mix-storage/mixStorage.js"></script>
+        <script id="searchPlaceList" type="text/html">
+            {{each items item i}}
+            <li class="mui-table-view-cell nm3k-before-zoom searchPlace">
+                {{item.name}}<span>{{item.address}}</span>
+            </li>
+            {{/each}}
+        </script>
+        <script type="text/javascript" charset="utf-8">
+            mui.plusReady(function() {
+                mui.init();
+                getUserAddress();
+                //				getUserLocationWithoutMap();
+                setTimeout(function() {
+                    showPlaceRecommend();
+                }, 1000)
+
+            });
+            mui("body").on('tap', '#back', function() {
+                mui.back();
+            });
+            mui("body").on('tap', ".searchPlace", backToPreconfig);
+            mui("body").on('tap', '#location', function() {
+                mui.openWindow({
+                    id: 'mapLocation',
+                    url: 'locationSearch.html'
+                });
+            })
+            
+        </script>
+        <div id="map" hidden>地图加载中...</div>
+        <div class="mui-content">
+            <ul class="mui-table-view mT0-must result" id="searchRecommend">
+                <!--附近地址结果-->
+            </ul>
+        </div>
+    </body>
+
+</html>

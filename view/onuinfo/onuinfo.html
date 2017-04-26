@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../css/main.css" />
+    </head>
+
+    <body class="nm3k">
+        <header class="mui-bar mui-bar-nav">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <h1 class="mui-title" id="onuId-title"></h1>
+            <a id='setting' href="javascript:void(0)" class="mui-pull-right mui-icon mui-icon-more-filled"></a>
+        </header>
+
+        <div class="mui-content">
+            <div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                <a class="mui-control-item mui-active" href="#realtime">
+                    实时信息
+                </a>
+                <a class="mui-control-item" href="#preconfig">
+                    预配置信息
+                </a>
+                <a class="mui-control-item" href="#operation">
+                    操作
+                </a>
+            </div>
+
+            <div id="realtime" class="mui-control-content mui-active">
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        基本信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>IP</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>MAC</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>设备名称</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>别名</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>位置</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>联系方式</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>硬件版本</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>软件版本</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>芯片厂商</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        状态信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>在线状态</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>启动时长</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>上线时长</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>测距</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        性能信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>光接收功率</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>光发送功率</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>PON接收功率</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        连接信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>OLT别名</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>OLT IP</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>位置信息</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        WAN信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>WAN类型</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>连接状态</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>IP/错误码</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        UNI信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>端口状态</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        Wifi信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>SSID</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>加密模式</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>密码</label>
+                        <input type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                </form>
+            </div>
+
+            <div id="preconfig" class=" mui-control-content">
+                <form class="mui-input-group">
+                    <div class="mui-input-row">
+                        基本信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>别名</label>
+                        <input id="preconfig-name" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>MAC</label>
+                        <input id="preconfig-mac" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        WAN信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>PPPoE帐号</label>
+                        <input id="preconfig-pppoeName" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>PPPoE密码</label>
+                        <input id="preconfig-pppoePwd" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        WIFI信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>SSID帐号</label>
+                        <input id="preconfig-wifiName" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>SSID密码</label>
+                        <input id="preconfig-wifiPwd" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        用户信息
+                    </div>
+                    <div class="mui-input-row">
+                        <label>联系人</label>
+                        <input id="preconfig-contact" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>联系电话</label>
+                        <input id="preconfig-phoneNo" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>联系地址</label>
+                        <input id="preconfig-address" type="text" class="mui-input-clear" placeholder="">
+                    </div>
+                </form>
+            </div>
+
+            <div id="operation" class="mui-control-content">
+                <ul class="mui-table-view mui-grid-view mui-grid-9">
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+                            <span class="mui-icon mui-icon-home"></span>
+                            <div class="mui-media-body">配置向导</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="../detect/detect.html">
+                            <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
+                            <div class="mui-media-body">一键检测</div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <a href="#">
+                            <span class="mui-icon mui-icon-chatbubble"></span>
+                            <div class="mui-media-body">开通报告</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="../../js/mui.min.js"></script>
+        <script src="../../libs/mix-storage/mixStorage.js"></script>
+        <script src="../main/accesslist.js"></script>
+        <script src="../../libs/zepto/zepto.js"></script>
+        <script src="onuinfo.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+    	</head>
+
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon mui-icon-back"></a>
+			<h1 class="mui-title">上行信道(3/4:1)</h1>
+			<a id='more' href="#popover" class="mui-pull-right mui-icon-more mui-icon"></a>
+			<a id='refresh' href="javascript:void(0)" class="mui-pull-right mui-icon-reload mui-icon"></a>
+		</header>
+		<div class="mui-content">
+		    <ul id='result' class="mui-table-view">
+			    <li class="mui-table-view-cell">UP1</li>
+			    <li class="mui-table-view-cell">UP2</li>
+			    <li class="mui-table-view-cell">UP3</li>
+			</ul>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-home"></span>
+		        <span class="mui-tab-label">基本信息</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-phone"></span>
+		        <span class="mui-tab-label">CM列表</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-email"></span>
+		        <span class="mui-tab-label">反向衰减</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-gear"></span>
+		        <span class="mui-tab-label">频谱信息</span>
+		    </a>
+		    <a id='more' class="mui-tab-item mui-active">
+		        <span class="mui-icon mui-icon-gear"></span>
+		        <span class="mui-tab-label">更多</span>
+		    </a>
+		</nav>
+		<div id="popover" class="mui-popover">
+		  <ul class="mui-table-view">
+		    <li class="mui-table-view-cell"><a id='backToInterested' href="#">返回关注列表</a></li>
+		    <li class="mui-table-view-cell"><a id='setting' href="#">设置</a></li>
+		  </ul>
+		</div>
+	</body>
+
+<script type="text/javascript">
+	mui("body").on('tap','#back',function(){
+	  	mui.back();
+	}) 
+	mui("body").on('tap','#backToInterested',function(){
+		mui.openWindow({
+		  	id:'interested',
+			url:'../../main/interested.html'
+		});
+	}) 
+	mui("body").on('tap','#setting',function(){
+		mui.openWindow({
+		  	id:'setting',
+			url:'../../main/setting.html'
+		});
+	}) 
+</script>
+</html>

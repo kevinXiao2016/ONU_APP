@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<!--<meta name="HandheldFriendly" content="true"/>-->
+	<!--<meta name="MobileOptimized" content="320"/>-->
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<!--<style type="text/css">-->
+<!--#map {-->
+	<!--width: 100%;-->
+	<!--position: fixed;-->
+	<!--top: 0px;-->
+	<!--bottom: 0px;-->
+	<!--line-height: 200px;-->
+	<!--text-align: center;-->
+	<!--background: #FFFFFF;-->
+<!--}</style>-->
+</head>
+<body>
+<script type="text/javascript">
+var em=null,map=null;
+// H5 plus事件处理
+       mui.plusReady(function () {
+            mui.init();
+	        showMaps();
+        });
+function plusReady(){
+	// 确保DOM解析完成
+	if(!em||!window.plus||map){return};
+	map = new plus.maps.Map("map");
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+// DOMContentloaded事件处理
+document.addEventListener("DOMContentLoaded",function(){
+	em=document.getElementById("map");
+	plusReady();
+},false);
+function showMaps(){
+    alert("showMap");
+	<!--if('Android'===plus.os.name&&navigator.userAgent.indexOf('StreamApp')>0){-->
+		<!--plus.nativeUI.toast('当前环境暂不支持地图插件');-->
+		<!--return;-->
+	<!--}-->
+	<!--var ws=plus.webview.currentWebview();-->
+	<!--var wm=plus.webview.getWebviewById(plus.runtime.appid);-->
+	<!--wm&&wm.evalJS("preateClear()");-->
+	map=new plus.maps.Map("map");
+	map.showUserLocation( true );
+	map.getUserLocation(function(state,pos){
+		if(0==state){
+			map.setCenter(pos);
+		}
+	});
+}
+</script>
+</body>
+</html>

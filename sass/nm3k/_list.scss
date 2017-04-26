@@ -1,0 +1,61 @@
+%on-offline{
+    color: #fff;
+    padding: 2px 5px;
+    @include border-radius(15px);
+}
+
+
+.right-span{
+    line-height: 1;
+    display: inline-block;
+    padding: 3px 6px;
+    color: #333;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    .mui-navigate-right &{
+        right:35px;
+    }
+}
+.nm3k-list{
+    color: $list-color;
+    .online{
+        @extend %on-offline;
+        background: $online-bg;
+    }
+    .offline{
+        @extend %on-offline;
+        background: $offline-bg;
+    }
+    .mac{
+        margin-right: 10px;;
+    }
+}
+.list-right-conner{
+    @include absLayoutRB(15px, 11px);
+}
+.relative-layout{
+    @include posLayout;
+}
+.preconfig{
+    @extend %on-offline;
+    background: $online-bg;
+    font-size: 12px;
+}
+.current{
+    @extend %on-offline;
+    background: $offline-bg;
+    font-size: 12px;
+    margin-right: 2px;
+}
+.no-result{ 
+    font-size: 12px;
+    color:#686868;
+    text-align: center;
+    padding: 30px 10px;
+    b{
+        color: $no-result
+    }
+}

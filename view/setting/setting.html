@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../../css/mui.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../css/main.css" />
+    </head>
+
+    <body class="nm3k">
+        <script src="../../js/mui.min.js"></script>
+        <script type="text/javascript" src="../../libs/mix-storage/mixStorage.js"></script>
+        <script type="text/javascript" src="setting.js"></script>
+        <header class="mui-bar mui-bar-nav">
+            <a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+            <h1 class="mui-title">设置</h1>
+        </header>
+        <div class="mui-content" id="setting">
+            <div id='subtitle' class="padding10 label-warning mui-text-center"><b>您还未登录</b></div>
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell" id="portAddress">
+                    <a class="mui-navigate-right">服务器地址<span class="right-span gray9" id="address"></span></a>
+                </li>
+                <li class="mui-table-view-cell" id="portNum">
+                    <a class="mui-navigate-right">服务器端口<span class="right-span gray9" id="portNumber"></span></a>
+                </li>
+                <li class="mui-table-view-cell">版本<span class="right-span gray9">2.0.0.0</span></li>
+                <li class="mui-table-view-cell" id="checkVersion">
+                    <a class="mui-navigate-right">检查更新</a>
+                </li>
+            </ul>
+
+            <div class="pT15 pL15 pR15">
+                <button id='logout' type="button" class="mui-btn mui-btn-red mui-btn-block" style="display: none;">注销</button>
+            </div>
+
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        document.getElementById("logout").addEventListener('tap', function() {
+            mui.confirm('注销当前帐号？', '提示', ['否', '是'], function(e) {
+                if(e.index == 1) {
+                    //清除已存储的账号信息
+                    myStorage.removeItem('ONU.token.username');
+                    myStorage.removeItem('ONU.token.password');
+                    myStorage.removeItem('ONU.token.autoLogin');
+                    mui.openWindow({
+                        id: 'login',
+                        url: '../login/login.html',
+                        show: {
+                            aniShow: 'pop-in'
+                        },
+                        waiting: {
+                            autoShow: false
+                        }
+                    });
+                }
+            });
+        });
+
+        window.onload = function() {
+            mui.plusReady(function() {
+                mui.init();
+                //设置IP和port
+                var setting = JSON.parse(myStorage.getItem('setting'));
+                if(setting) {
+                    document.getElementById("address").innerText = setting[0].ip;
+                    document.getElementById("portNumber").innerText = setting[0].port;
+                }
+                //判断注销按钮是否显示
+                var isLogin = myStorage.getItem('isLogin');
+                if(isLogin) {
+                    document.getElementById('logout').style.display = "block";
+                    document.getElementById('subtitle').innerHTML = "<b>欢迎您：</b>" + myStorage.getItem('ONU.token.username');
+                }
+            });
+        }
+
+        mui("body").on('tap', '#back', function() {
+            mui.back();
+        });
+
+        mui('#setting').on('tap', 'li', function() {
+            var id = this.id;
+            switch(id) {
+                case 'portAddress':
+                    changePortAddress();
+                    break;
+                case 'portNum':
+                    changePortNum();
+                    break;
+                case 'checkVersion':
+                    checkNewVersion();
+                    break;
+            }
+        });
+    </script>
+
+</html>

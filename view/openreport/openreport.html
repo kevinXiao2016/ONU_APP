@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+
+	<body class="nm3k">
+		<header class="mui-bar mui-bar-nav clear-shadow">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon iconfont icon-arrLeft"></a>
+			<h1 class="mui-title">自动预配置</h1>
+		</header>
+		<div class="mui-content">
+			<div id="putCir"></div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../libs/art-template/template-web.js"></script>
+		<script src="../../js/Nm3kCir.js"></script>
+		<script id="nm3k-cir-dom" type="text/html">
+			<div class="nm3k-dashboard" id="dashboard">
+		    	<div class="nm3k-dashboard-cir">
+		    		<% for(var i = 0; i <= 46; i++){ %>
+		    			<div class="nm3k-cir-line rotate<%= i %>"><span></span></div>					    
+					<% } %>
+		    	</div>	
+		    	<div class="nm3k-dashboard-cir-dashline">
+		    		<p><%= topTxt %></p>
+		    		<span><%= centerTxt %><label><%= unit %></label></span>
+		    	</div>
+		    	<div class="nm3k-dashboard-gradient">
+		    		<p><%= subTxt %></p>
+		    	</div>
+		    </div>
+		</script>	
+		<script type="text/javascript">
+			mui.init();
+			document.getElementById("back").addEventListener('tap', function(){
+				mui.back();	
+			});
+			var cir = new Nm3kCir({
+				renderTo: 'putCir',
+				topTxt: '已完成',
+				centerTxt: '0',
+				unit: '%',
+				subTxt: '预配置正在初始化...'
+			});
+			cir.init();
+			
+			var num = 0;
+			var add = true;
+			setInterval(function(){
+				if(add){					
+					num ++
+					if(num == 100){add = false}
+				}else{
+					num --
+					if(num == 0){ add = true}
+				}
+				var txt = num;
+				cir.setCenterTxt(txt);
+				cir.setPercent(txt);
+			}, 100)
+			
+		</script>
+	</body>
+
+</html>

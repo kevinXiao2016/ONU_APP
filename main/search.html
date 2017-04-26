@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/main.css" />
+		<link rel="stylesheet" href="../css/mui.picker.all.css" />
+    </head>
+	<body class="nm3k white-body">
+		<header class="mui-bar mui-bar-nav">
+			<a id='back' href="javascript:void(0)" class="mui-pull-left mui-icon  iconfont icon-arrLeft"></a>
+			<ul class="mui-list-unstyled nm3k-search leftFloatUl">
+				<li class="pR0-must">
+					<div id="typeSel" class="nm3k-search-type"><label id="typeSelTxt">OLT</label><i class="iconfont icon-arrBottom"></i></div>					
+				</li>
+			</ul>
+			<div class="nm3k-search-text">
+				<input type="text" class="nm3k-search-input" placeholder="IP、MAC、别名" id="searchInput" />	
+			</div>
+			<ul class="bar-right-icons mui-pull-right nm3k-hide-right" id="rightIcons">
+	  			<li>
+			    	<a id='search' href="javascript:void(0)" class="mui-pull-right mui-icon iconfont icon-zoom mR0-must"></a>
+			    </li>
+			    <li>
+			    	<a id='scan' href="javascript:void(0)" class="mui-pull-right mui-icon iconfont icon-scan"></a>
+			    </li>
+			</ul>
+		</header>
+		<div class="mui-content">
+		    <div class="nm3k-collapse-container" id="attention-list">
+				<span>最近搜索</span>				
+			</div>
+			<ul class="mui-table-view mT0-must result" id="result">
+			    
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.all.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui("body").on('tap','#back',function(){
+			  	mui.back();
+			});			
+			
+			//选择搜索类型;
+			document.getElementById("typeSel").addEventListener('tap', function(event) {
+				var picker = new mui.PopPicker();
+		 		picker.setData([
+		 			{value:'olt',text:'OLT'},
+		 			{value:'cmts',text:'CMTS'},
+		 			{value:'onu',text:'ONU'},
+		 			{value:'cm',text:'CM'}
+		 		]);
+		 		picker.show(function (selectItems) {
+				    var sel = selectItems[0].text;				    
+				    document.getElementById("typeSelTxt").innerText = sel;
+				    
+				})
+			}, false);
+			//点击搜索按钮;
+			document.getElementById("search").addEventListener('tap', function(event) {
+				var $input = document.getElementById("searchInput");
+				var val = $input.value;
+				if(val == ""){
+					mui.toast('搜索条件不能为空！');
+				}
+			}, false);	
+		</script>
+	</body>
+</html>

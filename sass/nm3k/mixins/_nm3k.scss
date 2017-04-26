@@ -1,0 +1,36 @@
+@mixin absLayout($top: 0, $left: 0){
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+@mixin absLayoutRB($right: 0, $bottom: 0){
+    position: absolute;
+    right: $right;
+    bottom: $bottom;
+}
+
+@mixin posLayout($top: 0, $left: 0){
+    position: relative;
+    top: $top;
+    left: $left;
+}
+@mixin transformY($num: 0%){
+    -moz-transform: translateY($num); 
+    -ms-transform: translateY($num); 
+    -webkit-transform: translateY($num); 
+    transform: translateY($num);
+}
+
+@mixin transformX($num: 0%){
+    -moz-transform: translateX($num); 
+    -ms-transform: translateX($num); 
+    -webkit-transform: translateX($num); 
+    transform: translateX($num);
+}
+
+@mixin transition($time:.4s, $animate:ease){
+    -moz-transition: -moz-transform $time $animate; 
+    -o-transition: -o-transform $time $animate; 
+    -webkit-transition: -webkit-transform $time $animate; 
+    ransition: transform $time $animate;
+}
